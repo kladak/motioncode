@@ -1,0 +1,28 @@
+# Default local experiment. Offline. No network.
+seed: 42
+dataset:
+  source: synthetic
+  n_per_class: 60
+  length: 512
+  fs: 128
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  group_by: record_id
+preprocess:
+  detrend: true
+  bandpass: [0.5, 40.0]
+  normalize: zscore
+models:
+  - dummy
+  - logistic
+  - forest
+  - cnn1d
+cnn:
+  channels: [8, 16]
+  epochs: 40
+  lr: 0.05
+  batch_size: 16
+reports_dir: reports
+artifacts_dir: artifacts
