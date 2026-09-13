@@ -23,8 +23,8 @@ class ExperimentConfig:
     bandpass: tuple[float, float] | None = (0.5, 40.0)
     normalize: str = "zscore"
     models: list[str] = field(default_factory=lambda: ["dummy", "logistic", "forest", "cnn1d"])
-    cnn_epochs: int = 25
-    cnn_lr: float = 0.02
+    cnn_epochs: int = 40
+    cnn_lr: float = 0.05
     cnn_batch_size: int = 16
     cnn_channels: tuple[int, int] = (8, 16)
     reports_dir: str = "reports"
@@ -53,8 +53,8 @@ class ExperimentConfig:
             bandpass=bandpass,
             normalize=str(pre.get("normalize", "zscore")),
             models=list(raw.get("models", ["dummy", "logistic", "forest", "cnn1d"])),
-            cnn_epochs=int(cnn.get("epochs", 25)),
-            cnn_lr=float(cnn.get("lr", 0.02)),
+            cnn_epochs=int(cnn.get("epochs", 40)),
+            cnn_lr=float(cnn.get("lr", 0.05)),
             cnn_batch_size=int(cnn.get("batch_size", 16)),
             cnn_channels=(int(ch[0]), int(ch[1])),
             reports_dir=str(raw.get("reports_dir", "reports")),
