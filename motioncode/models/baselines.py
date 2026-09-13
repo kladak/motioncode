@@ -65,7 +65,6 @@ def train_baselines(
                     "clf",
                     LogisticRegression(
                         max_iter=2000,
-                        multi_class="auto",
                         random_state=seed,
                     ),
                 ),
