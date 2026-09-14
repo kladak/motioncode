@@ -2,7 +2,7 @@
 
 **Scientific ML / ECG-like classification — reproducible pipelines, baselines, honest metrics.**
 
-Portfolio project for [Karim Ladak](https://github.com/kladak) (Applied AI + scientific software). Spec: [`SPEC.md`](SPEC.md).
+Spec: [`SPEC.md`](SPEC.md).
 
 ## Scope & honesty
 
