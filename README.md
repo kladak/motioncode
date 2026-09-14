@@ -4,12 +4,11 @@
 
 Portfolio project for [Karim Ladak](https://github.com/kladak) (Applied AI + scientific software). Spec: [`SPEC.md`](SPEC.md).
 
-## Honesty (read first)
+## Scope & honesty
 
-- **Educational research tooling.** Not a medical device. Not clinical decision support. Not FDA-facing software.
-- Labels in the default path are **synthetic morphology tags** (`regular` / `irregular` / `wide` / `burst`). They are **not diagnoses**.
-- There is **no prior public MotionCode repo** under `kladak/motioncode`. A circulating **45% → 69.3%** accuracy story is **not reconstructible** from any public commit, paper, or notebook tied to this project. This codebase does **not** invent or backfill that claim.
-- Default CI uses **synthetic data only** (no network). Optional PhysioNet download is documented and **not** executed in CI. No PhysioNet-derived scores are shipped in v0.
+Clean-room educational implementation using synthetic data. Reported metrics apply only to the included synthetic benchmark. Not a medical device or clinical decision support. Default labels are synthetic morphology tags (`regular` / `irregular` / `wide` / `burst`), not diagnoses. Default CI is offline (no network); optional PhysioNet download is documented and not executed in CI.
+
+See [`PROVENANCE.md`](PROVENANCE.md) for historical-claim notes.
 
 ## Quick start (offline)
 
@@ -52,7 +51,7 @@ preprocess → grouped train/val/test (record_id) + leakage checks
 
 ## Synthetic CI metrics (real run, seed=42)
 
-Produced by `make train-ci` on this machine (2026-09-13). **n_per_class=24**, length=256, split 66/15/15, leakage_ok=true. These are **simulator** scores, not clinical performance.
+Produced by `make train-ci` (2026-09-13). **n_per_class=24**, length=256, split 66/15/15, leakage_ok=true. Simulator scores only — not clinical performance.
 
 | Model | Accuracy | Macro-F1 | AUROC (ovr) |
 |-------|----------|----------|-------------|
@@ -61,18 +60,18 @@ Produced by `make train-ci` on this machine (2026-09-13). **n_per_class=24**, le
 | random forest (features) | 0.733 | 0.697 | 0.907 |
 | cnn1d (25 epochs, numpy) | 0.467 | 0.357 | 0.723 |
 
-Takeaways that are allowed on a resume:
+Notes:
 
 - Feature baselines beat a majority dummy on a leakage-checked split.
-- A tiny teaching CNN beats dummy after more epochs but still trails handcrafted features on this short synthetic draw — expected, and reported as such.
-- Absolute numbers will move with seed / `n_per_class`; regenerate with `make train-ci` and trust `reports/metrics.json`.
+- A tiny teaching CNN beats dummy after more epochs but still trails handcrafted features on this short synthetic draw.
+- Absolute numbers move with seed / `n_per_class`; regenerate with `make train-ci` and trust `reports/metrics.json`.
 
 Confusion matrices are written to `reports/confusion_*.png` (gitignored; regenerate locally).
 
 ## Dataset paths
 
 1. **Synthetic (default / CI)** — in-repo generator, no network.
-2. **PhysioNet (optional)** — `python scripts/download_physionet.py` after `pip install '.[physionet]'`. Label-map adapter into the four morphology tags is **intentionally not implemented** in v0 so we do not pretend MIT-BIH symbols equal simulator classes.
+2. **PhysioNet (optional)** — `python scripts/download_physionet.py` after `pip install '.[physionet]'`. See [`PROVENANCE.md`](PROVENANCE.md).
 
 ## Tests
 
