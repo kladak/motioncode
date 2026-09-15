@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "motioncode"
 version = "0.1.0"
-description = "Scientific ML / ECG classification — reproducible pipelines, baselines, honest metrics"
+description = "ECG-like waveform classification with reproducible pipelines and baselines"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Karim Ladak", email = "ladakakarim@gmail.com" }]

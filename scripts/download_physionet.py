@@ -3,7 +3,7 @@
 
 This script documents how to pull MIT-BIH arrhythmia records into a local
 cache. It does not run in GitHub Actions. MotionCode v0 ships **no**
-PhysioNet-derived metrics — do not invent them after downloading.
+PhysioNet-derived metrics are not shipped in this repository.
 
 Usage (local, needs network + `pip install 'motioncode[physionet]'`):
 
@@ -49,7 +49,7 @@ def main() -> None:
     print(
         "Downloading into",
         args.out,
-        "— educational use only. Not a clinical dataset card.",
+        "See the PhysioNet record page for the dataset's own documentation.",
     )
     for rec in args.records:
         print(f"  {args.db}/{rec} ...")
@@ -57,8 +57,7 @@ def main() -> None:
     readme = args.out / "README_MOTIONCODE.txt"
     readme.write_text(
         "PhysioNet cache for MotionCode.\n"
-        "Do not commit derived accuracy claims without a real evaluated run.\n"
-        "The historical 45%→69.3% MotionCode number is unavailable / not reconstructible.\n"
+        "The label-map adapter is not implemented in v0; see SPEC.md.\n"
     )
     print("done. Label-map adapter is not implemented in v0 (see SPEC.md).")
 

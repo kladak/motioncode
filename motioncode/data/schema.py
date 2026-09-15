@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-# Simulator morphology tags — not rhythm diagnoses.
+# Simulator morphology tags, not rhythm diagnoses.
 CLASSES: tuple[str, ...] = ("regular", "irregular", "wide", "burst")
 CLASS_TO_ID: dict[str, int] = {name: i for i, name in enumerate(CLASSES)}
 ID_TO_CLASS: dict[int, str] = {i: name for name, i in CLASS_TO_ID.items()}

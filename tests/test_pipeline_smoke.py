@@ -20,8 +20,7 @@ def test_ci_config_produces_metrics(tmp_path: Path):
     assert path.exists()
     payload = json.loads(path.read_text())
     assert payload["leakage_ok"] is True
-    assert "disclaimer" in payload
-    assert "45%" not in payload["disclaimer"] or "not reconstructible" in payload["disclaimer"].lower() or "No reconstructible" in payload["disclaimer"]
+    assert "data_note" in payload
     for name in ("dummy", "logistic", "forest"):
         m = payload["models"][name]
         assert 0.0 <= m["accuracy"] <= 1.0

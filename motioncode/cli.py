@@ -46,7 +46,7 @@ def _load_cnn(path: Path) -> CNN1D:
 def cmd_infer(args: argparse.Namespace) -> int:
     artifacts = Path(args.artifacts_dir)
     model_name = args.model
-    # Build a one-off synthetic sample if no input npz given — demo path.
+    # Build a one-off synthetic sample when no input npz is given (demo path).
     if args.input:
         arr = np.load(args.input)
         X = arr["X"] if "X" in arr.files else arr[arr.files[0]]
@@ -95,14 +95,14 @@ def cmd_infer(args: argparse.Namespace) -> int:
         "pred_class": ID_TO_CLASS[pred],
         "pred_id": pred,
         "proba": {CLASSES[i]: float(proba[i]) for i in range(len(CLASSES))},
-        "disclaimer": "Demo inference on educational tooling. Not a diagnosis.",
+        "data_note": "Synthetic sample; labels are morphology tags, not diagnoses.",
     }
     print(json.dumps(payload, indent=2))
     return 0
 
 
 def cmd_demo(args: argparse.Namespace) -> int:
-    """Train CI config then run one inference — smoke path for README."""
+    """Train the CI config then run one inference: the smoke path from the README."""
     args.config = args.config or "configs/ci.yaml"
     rc = cmd_train(args)
     if rc != 0:

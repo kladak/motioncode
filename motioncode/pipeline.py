@@ -65,10 +65,9 @@ def run_experiment(cfg: ExperimentConfig) -> dict[str, Any]:
     results: dict[str, Any] = {
         "project": "motioncode",
         "version": "0.1.0",
-        "disclaimer": (
-            "Educational research tooling. Not a medical device. "
-            "Synthetic morphology labels are not diagnoses. "
-            "No reconstructible historical 45%→69.3% claim exists for this repo."
+        "data_note": (
+            "Scores computed on the in-repo synthetic generator. "
+            "Labels are morphology tags, not diagnoses."
         ),
         "config": {
             "seed": cfg.seed,
@@ -110,7 +109,7 @@ def run_experiment(cfg: ExperimentConfig) -> dict[str, Any]:
                 metrics["confusion_matrix"],
                 CLASSES,
                 plot_path,
-                title=f"{name} — test confusion",
+                title=f"{name}: test confusion",
             )
             metrics["confusion_plot"] = str(plot_path)
             results["models"][name] = metrics
@@ -141,7 +140,7 @@ def run_experiment(cfg: ExperimentConfig) -> dict[str, Any]:
             metrics["confusion_matrix"],
             CLASSES,
             plot_path,
-            title="cnn1d — test confusion",
+            title="cnn1d: test confusion",
         )
         metrics["confusion_plot"] = str(plot_path)
         results["models"]["cnn1d"] = metrics

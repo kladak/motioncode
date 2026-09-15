@@ -1,7 +1,6 @@
 {
   "project": "motioncode",
   "version": "0.1.0",
-  "disclaimer": "Educational research tooling. Not a medical device. Synthetic morphology labels are not diagnoses. No reconstructible historical 45%→69.3% claim exists for this repo.",
   "note": "This is a schema example only. Real numbers are written by `make train-ci` into reports/metrics.json (gitignored).",
   "config": {
     "seed": 42,
@@ -9,12 +8,30 @@
     "n_per_class": 24,
     "length": 256,
     "fs": 128.0,
-    "models": ["dummy", "logistic", "forest", "cnn1d"]
+    "models": [
+      "dummy",
+      "logistic",
+      "forest",
+      "cnn1d"
+    ]
   },
-  "split_sizes": {"train": 67, "val": 14, "test": 15},
+  "split_sizes": {
+    "train": 67,
+    "val": 14,
+    "test": 15
+  },
   "leakage_ok": true,
   "models": {
-    "dummy": {"accuracy": 0.0, "macro_f1": 0.0, "auroc_ovr": null},
-    "logistic": {"accuracy": 0.0, "macro_f1": 0.0, "auroc_ovr": null}
-  }
+    "dummy": {
+      "accuracy": 0.0,
+      "macro_f1": 0.0,
+      "auroc_ovr": null
+    },
+    "logistic": {
+      "accuracy": 0.0,
+      "macro_f1": 0.0,
+      "auroc_ovr": null
+    }
+  },
+  "data_note": "Scores computed on the in-repo synthetic generator. Labels are morphology tags, not diagnoses."
 }
